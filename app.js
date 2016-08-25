@@ -21,8 +21,8 @@ var course_retrieval_job = require('./course_retrieval_job.js');
 var SERVICE_URL = '/service/';
 
 //-- cean: Routers
-var demos = require('./routes/demo.js');
-app.use(SERVICE_URL, demos);
+var by_time = require('./routes/by_time.js');
+app.use(SERVICE_URL, by_time);
 
 
 //Web server
