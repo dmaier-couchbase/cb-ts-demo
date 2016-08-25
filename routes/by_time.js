@@ -78,7 +78,7 @@ router.get('/by_time', function (req, res) {
 
 			if (!doc.error) {
 				
-				result[key]=doc.value;
+				result[key.split("dax::")[1]]=doc.value;
 			}		
 
 		 }
