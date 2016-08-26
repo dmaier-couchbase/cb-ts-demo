@@ -24,6 +24,8 @@ var SERVICE_URL = '/service/';
 var by_time = require('./routes/by_time.js');
 app.use(SERVICE_URL, by_time);
 
+var agg_by_hour = require('./routes/agg_by_hour.js');
+app.use(SERVICE_URL, agg_by_hour);
 
 //Web server
 server = app.listen(9000, function () { 
