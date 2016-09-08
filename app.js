@@ -27,6 +27,9 @@ app.use(SERVICE_URL, by_time);
 var agg_by_hour = require('./routes/agg_by_hour.js');
 app.use(SERVICE_URL, agg_by_hour);
 
+var grafana = require('./routes/grafana.js');
+app.use(SERVICE_URL, grafana);
+
 //Web server
 server = app.listen(9000, function () { 
 	
