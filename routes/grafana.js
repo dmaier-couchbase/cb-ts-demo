@@ -49,6 +49,14 @@ router.all('/grafana/annotations/', function(req, res) {
 	res.json(annotations);
 });
 
+/**
+ * Get the available targets/metrics
+ *
+ * For now we just return the value 'dax' but would be actually a good idea to extend our example with a target attribute which reflects the prefix of the document
+ *
+ *  dax:$ts : { 'target' : 'dax', ... }
+ *
+ */
 router.all('/grafana/search/', function(req, res){
 	
 	var result = [];
@@ -56,7 +64,16 @@ router.all('/grafana/search/', function(req, res){
 	  
 });
 
-
+/**
+ * Query for data points by filtering by target
+ *
+ * The result looks like this:
+ *
+ * {"target": "dax", "datapoints": [[3.0, 1450754160], [2.0, 1450754220], ... ]}
+ *
+ * whereby the entry in the tuple is the data point value and the second one the time stamp
+ * 
+ */
 router.all('/grafana/query/', function(req, res){
 	
 	console.log(req.url);
@@ -64,9 +81,17 @@ router.all('/grafana/query/', function(req, res){
 
 	var result = [];
 
-	//TODO: Add Couchbase logic - return results by also applying a filter
+	var targets = req.body.targets;
 
-	res.json(result);
+	//Make sure that only our 'dax' metric is queryable
+	if (typeof targets !== 'undefined' && targets.length == 1 && target[0] == metrics[0] ) {
+		
+		//TODO: Add Couchbase logic - T
+		res.json(result);
+	} else {
+
+		res.json(result);
+	}
 });
 
 
