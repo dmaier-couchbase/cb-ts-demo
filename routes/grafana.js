@@ -1,3 +1,4 @@
+//
 //Express
 var express = require('express');
 var router = express.Router();
@@ -17,10 +18,14 @@ var annotation = {
 	enabled: true,
 	datasource: "generic datasource",
 	showLine: true
-}
+};
 
 //A default annotation
-var annotations = [{ annotation: annotation, "title": "Couchbase", "time": new Date().getTime(), text: "Backed by Couchbase", tags: "couchbase" }]
+var annotations = [{ annotation: annotation, "title": "Couchbase", "time": new Date().getTime(), text: "Backed by Couchbase", tags: "couchbase" }];
+
+//Metrics/Targets
+var metrics = ['dax'];
+
 
 
 /** 
@@ -46,13 +51,8 @@ router.all('/grafana/annotations/', function(req, res) {
 
 router.all('/grafana/search/', function(req, res){
 	
-	console.log(req.url)
-	console.log(req.body);
-	
 	var result = [];
-
-	//TODO: Add Couchbase logic - return results within a given time frame
-	res.json(result);
+	res.json(metrics);
 	  
 });
 
