@@ -19,6 +19,8 @@ var course_retrieval_job = require('./course_retrieval_job.js');
 
 //The service's base URL
 var SERVICE_URL = '/service/';
+var GRAFANA_URL = '/service/grafana';
+
 
 //-- cean: Routers
 var by_time = require('./routes/by_time.js');
@@ -28,7 +30,7 @@ var agg_by_hour = require('./routes/agg_by_hour.js');
 app.use(SERVICE_URL, agg_by_hour);
 
 var grafana = require('./routes/grafana.js');
-app.use(SERVICE_URL, grafana);
+app.use(GRAFANA_URL, grafana);
 
 //Web server
 server = app.listen(9000, function () { 
