@@ -63,7 +63,6 @@ router.all('/annotations', function(req, res) {
  */
 router.all('/search', function(req, res){
 	
-	var result = [];
 	res.json(metrics);
 	  
 });
