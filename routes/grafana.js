@@ -67,34 +67,12 @@ router.all('/search', function(req, res){
 	  
 });
 
-
-
 /**
- * TODO: Move to helper module
- */
-function twoDigVal(val) {
-
-        if ((''+val).length == 1) val = '0' + val;
-        return val;
-}
-
-
-/**
- * TODO: Move to helper module
+ * Generate a key
  */
 function genKey(ts) {
 
-   //dax::2016-08-25T13:13
-   var date = new Date(ts);
-   
-   //UTC?
-   var year = date.getUTCFullYear();
-   var month = twoDigVal(date.getUTCMonth()+1);
-   var day = twoDigVal(date.getUTCDate());
-   var hour = twoDigVal(date.getUTCHours());
-   var min = twoDigVal(date.getUTCMinutes());
-
-   var key = "dax::" + year + "-" + month + "-" + day + "T" + hour + ":" + min;
+   var key = "dax::" + helper.genDateStr(ts);
 
    return key;
 }
@@ -163,7 +141,14 @@ router.all('/query', jsonParser, function(req, res){
                         		}
                  		}
 
-				//console.log(result);
+				//Sort the result by time because Grafana expects it in this order				
+				result.datapoints = result.datapoints.sort(function (a, b) {
+
+					return a[1] - b[1];
+
+				});
+
+
 				res.json([result]);
           		});
 				
